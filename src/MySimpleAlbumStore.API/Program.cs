@@ -1,6 +1,16 @@
 var builder = WebApplication.CreateBuilder(args);
+
+// configure services
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
+    // behaviors go here
+});
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+// configure pipeline
+
+
 
 app.Run();
