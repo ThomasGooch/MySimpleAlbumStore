@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace MySimpleAlbumStore.API.MediatrAbstracts.CQRS;
+﻿namespace MySimpleAlbumStore.API.MediatrAbstracts.CQRS;
 
 // must have response
 public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
