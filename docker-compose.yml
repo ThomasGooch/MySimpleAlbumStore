@@ -1,0 +1,10 @@
+
+version: '3.4'
+
+services:
+ 
+  albumstoredb:
+    image: postgres
+
+volumes:
+  postgres_albumstore:
