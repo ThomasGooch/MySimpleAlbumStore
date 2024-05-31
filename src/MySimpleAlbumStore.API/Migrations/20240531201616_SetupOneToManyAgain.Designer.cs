@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySimpleAlbumStore.API.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MySimpleAlbumStore.API.Migrations
 {
     [DbContext(typeof(AlbumStoreContext))]
-    partial class AlbumStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20240531201616_SetupOneToManyAgain")]
+    partial class SetupOneToManyAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,20 +51,6 @@ namespace MySimpleAlbumStore.API.Migrations
                     b.HasIndex("ArtistId1");
 
                     b.ToTable("Albums");
-
-                    b.HasData(
-                        new
-                        {
-                            AlbumId = new Guid("b3a4341d-43e8-4a5b-9c72-c02c15d34ef5"),
-                            ImageUrl = "https://example.com/album1.jpg",
-                            Title = "Album 1"
-                        },
-                        new
-                        {
-                            AlbumId = new Guid("c144538b-20e3-41fb-b467-3f09b1e5a0e0"),
-                            ImageUrl = "https://example.com/album2.jpg",
-                            Title = "Album 2"
-                        });
                 });
 
             modelBuilder.Entity("MySimpleAlbumStore.API.Models.Artist", b =>
@@ -77,18 +66,6 @@ namespace MySimpleAlbumStore.API.Migrations
                     b.HasKey("ArtistId");
 
                     b.ToTable("Artists");
-
-                    b.HasData(
-                        new
-                        {
-                            ArtistId = new Guid("0c7a93e1-f31f-42f0-9d0c-9e3dbdf61dac"),
-                            Name = "John Smith"
-                        },
-                        new
-                        {
-                            ArtistId = new Guid("e9f66cbc-ed05-406d-84ec-05ddff1fba40"),
-                            Name = "Jane Doe"
-                        });
                 });
 
             modelBuilder.Entity("MySimpleAlbumStore.API.Models.Album", b =>

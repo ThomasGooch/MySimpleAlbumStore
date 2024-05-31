@@ -23,7 +23,7 @@ public class ArtistsRepository : IArtistsRepository
     {
         _context.Artists.Add(artist);
         await _context.SaveChangesAsync();
-        return artist.Id;
+        return artist.ArtistId;
     }
 
     public async Task<bool> UpdateArtistAsync(Artist artist)
