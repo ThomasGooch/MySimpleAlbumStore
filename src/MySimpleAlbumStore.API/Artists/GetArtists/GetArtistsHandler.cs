@@ -1,18 +1,17 @@
 ﻿
 
-using Microsoft.EntityFrameworkCore;
-using MySimpleAlbumStore.API.Data;
 
 namespace MySimpleAlbumStore.API.Artists.GetArtists;
 
 public record GetArtistsQuery() : IQuery<GetArtistsResult>;
-public record GetArtistsResult(List<Artist> Artists);
+public record GetArtistsResult(IEnumerable<Artist>? Artists);
 
-public class GetArtistsCommandHandler(AlbumStoreContext context) : IQueryHandler<GetArtistsQuery, GetArtistsResult>
+public class GetArtistsCommandHandler(IArtistsRepository artistsRepository) : IQueryHandler<GetArtistsQuery, GetArtistsResult>
 {
     public async Task<GetArtistsResult> Handle(GetArtistsQuery query, CancellationToken cancellationToken)
     {
-        var artists = await context.Set<Artist>().ToListAsync(cancellationToken);
+        var artists = await artistsRepository.GetArtistsAsync();
+
         return new GetArtistsResult(artists);
     }
 }
