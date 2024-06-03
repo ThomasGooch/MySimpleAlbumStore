@@ -4,7 +4,7 @@
 
 namespace MySimpleAlbumStore.API.Artists.AddArtist;
 
-public record AddArtistRequest(string Name);
+public record AddArtistRequest(string Name, ICollection<Album>? Albums);
 public record AddArtistResponse(Guid Id);
 
 public class AddArtistEndpoint : ICarterModule
@@ -14,7 +14,7 @@ public class AddArtistEndpoint : ICarterModule
         app.MapPost("/artists", async (AddArtistRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
 
-            var result = await sender.Send(new AddArtistCommand(request.Name), cancellationToken);
+            var result = await sender.Send(new AddArtistCommand(request.Name, request.Albums), cancellationToken);
             var response = result.Adapt<AddArtistResponse>();
             return Results.Ok(response);
 

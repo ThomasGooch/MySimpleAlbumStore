@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MySimpleAlbumStore.API.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MySimpleAlbumStore.API.Migrations
 {
     [DbContext(typeof(AlbumStoreContext))]
-    partial class AlbumStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20240603173413_seedingArtistsToAlbums")]
+    partial class seedingArtistsToAlbums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,15 +50,15 @@ namespace MySimpleAlbumStore.API.Migrations
                     b.HasData(
                         new
                         {
-                            AlbumId = new Guid("a3084d34-c610-4408-aaee-0624117bc1cf"),
-                            ArtistId = new Guid("21f04af8-8d28-4465-a098-da58fe86388c"),
+                            AlbumId = new Guid("738ea536-f44c-45ab-bfc5-e856f483bad0"),
+                            ArtistId = new Guid("b109cacf-33b4-4004-9b8a-2a030220e765"),
                             ImageUrl = "https://example.com/album1.jpg",
                             Title = "Album 1"
                         },
                         new
                         {
-                            AlbumId = new Guid("3eeb18da-97b2-44cb-a9f1-dfc5234e04f7"),
-                            ArtistId = new Guid("822e1f8a-d8d6-4adc-8740-9ca68cbf9f61"),
+                            AlbumId = new Guid("88326a7d-79d5-4c7f-a7e2-d0e04f1836ac"),
+                            ArtistId = new Guid("ed1d9c53-2ea8-42c4-9596-728d4c0e839e"),
                             ImageUrl = "https://example.com/album2.jpg",
                             Title = "Album 2"
                         });
@@ -78,12 +81,12 @@ namespace MySimpleAlbumStore.API.Migrations
                     b.HasData(
                         new
                         {
-                            ArtistId = new Guid("21f04af8-8d28-4465-a098-da58fe86388c"),
+                            ArtistId = new Guid("b109cacf-33b4-4004-9b8a-2a030220e765"),
                             Name = "John Smith"
                         },
                         new
                         {
-                            ArtistId = new Guid("822e1f8a-d8d6-4adc-8740-9ca68cbf9f61"),
+                            ArtistId = new Guid("ed1d9c53-2ea8-42c4-9596-728d4c0e839e"),
                             Name = "Jane Doe"
                         });
                 });
