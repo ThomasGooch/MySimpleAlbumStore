@@ -2,9 +2,9 @@
 
 public class Album
 {
-    public Guid Id { get; set; }
+    public Guid AlbumId { get; set; }
     public string Title { get; set; } = string.Empty;
-    public List<Artist> Artist { get; set; } = [];
-    public string ImageUrl { get; set; } = string.Empty;
-
+    public string? ImageUrl { get; set; }
+    public Guid ArtistId { get; set; }
+    public Artist? Artist { get; set; }
 }

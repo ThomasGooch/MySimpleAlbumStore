@@ -1,0 +1,15 @@
+version: '3.4'
+
+
+services:
+  albumstoredb:
+    container_name: albumstoredb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=AlbumStoreDb
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres_albumstore:/var/lib/postgresql/data/
