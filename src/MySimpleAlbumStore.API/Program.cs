@@ -1,3 +1,4 @@
+using MySimpleAlbumStore.API.Exceptions.Handler;
 using MySimpleAlbumStore.API.MediatrAbstracts.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +21,14 @@ builder.Services.AddMediatR(config =>
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddCarter();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 
 app.MapCarter();
+
+app.UseExceptionHandler(opt => { });
 
 
 app.Run();
