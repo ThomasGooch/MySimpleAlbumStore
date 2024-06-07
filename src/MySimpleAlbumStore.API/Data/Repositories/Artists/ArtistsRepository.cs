@@ -21,7 +21,7 @@ public class ArtistsRepository : IArtistsRepository
 
     public async Task<Guid> AddArtistAsync(Artist artist)
     {
-        _context.Artists.Add(artist);
+        await _context.Artists.AddAsync(artist);
         await _context.SaveChangesAsync();
         return artist.ArtistId;
     }
@@ -35,14 +35,14 @@ public class ArtistsRepository : IArtistsRepository
 
     public async Task<bool> DeleteArtistAsync(Guid id)
     {
-        var artist = await _context.Artists.FindAsync(id);
+        var artistToDelete = await _context.Artists.FindAsync(id);
 
-        if (artist == null)
+        if (artistToDelete == null)
         {
             return false;
         }
 
-        _context.Artists.Remove(artist);
+        _context.Artists.Remove(artistToDelete);
         await _context.SaveChangesAsync();
 
         return true;

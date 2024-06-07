@@ -1,5 +1,5 @@
-using MySimpleAlbumStore.API.Exceptions.Handler;
-using MySimpleAlbumStore.API.MediatrAbstracts.Behaviors;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,15 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AlbumStoreContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("Database"))
-        .LogTo(Console.WriteLine, LogLevel.Information)
-        .EnableSensitiveDataLogging();
+        .LogTo(Console.WriteLine, LogLevel.Warning);
+
 });
 builder.Services.AddScoped<IArtistsRepository, ArtistsRepository>();
+builder.Services.AddScoped<IAlbumsRepository, AlbumsRepository>();
 
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssemblies(typeof(Program).Assembly);
     config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddCarter();
