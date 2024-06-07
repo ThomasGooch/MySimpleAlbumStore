@@ -21,6 +21,7 @@ public class AddArtistEndpoint : ICarterModule
 
         }).WithName("AddArtists")
             .Produces<AddArtistResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Add Artist")
             .WithDescription("Add Artist");
     }

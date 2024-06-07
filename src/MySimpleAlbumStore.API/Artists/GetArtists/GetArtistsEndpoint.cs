@@ -1,7 +1,4 @@
-﻿
-using Mapster;
-
-namespace MySimpleAlbumStore.API.Artists.GetArtists
+﻿namespace MySimpleAlbumStore.API.Artists.GetArtists
 {
 
     // public record GetArtistsRequest();
@@ -19,7 +16,6 @@ namespace MySimpleAlbumStore.API.Artists.GetArtists
             })
             .WithName("GetArtists")
             .Produces<GetArtistsResponse>(StatusCodes.Status200OK)
-            .ProducesProblem(StatusCodes.Status400BadRequest)
             .WithSummary("Get Artists")
             .WithDescription("Get Artists");
         }

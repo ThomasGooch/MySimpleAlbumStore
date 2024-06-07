@@ -1,5 +1,4 @@
-﻿
-namespace MySimpleAlbumStore.API.Artists.DeleteArtist
+﻿namespace MySimpleAlbumStore.API.Artists.DeleteArtist
 {
     public record DeleteArtistRequest(Guid ArtistId);
     public record DeleteArtistResponse(bool Success);
@@ -14,7 +13,12 @@ namespace MySimpleAlbumStore.API.Artists.DeleteArtist
                 var response = result.Adapt<DeleteArtistResponse>();
                 return Results.Ok(response);
 
-            });
+            })
+            .WithName("DeleteArtist")
+            .Produces<DeleteArtistResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Delete Artist")
+            .WithDescription("Delete Artist");
         }
     }
 }
